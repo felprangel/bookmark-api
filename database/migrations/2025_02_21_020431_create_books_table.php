@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->unsignedInteger('id')->autoIncrement();
+            $table->unsignedInteger('user_id');
             $table->string('title');
             $table->string('author');
             $table->unsignedSmallInteger('pages');
