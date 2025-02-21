@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('author');
             $table->unsignedSmallInteger('pages');
             $table->boolean('read')->default(false);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
