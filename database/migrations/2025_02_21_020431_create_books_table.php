@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('pages');
             $table->boolean('read')->default(false);
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
