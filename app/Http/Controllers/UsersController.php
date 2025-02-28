@@ -8,4 +8,9 @@ class UsersController
     {
         return 'hello world';
     }
+
+    public function login()
+    {
+        return 'hello world';
+    }
 }
