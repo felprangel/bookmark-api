@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\UnauthorizedException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class UsersController
 {
@@ -36,7 +36,7 @@ class UsersController
         ]);
 
         if (!Auth::attempt($data)) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedHttpException('');
         }
         $user = User::find(Auth::id());
         $token = $user->createToken('cookie');
