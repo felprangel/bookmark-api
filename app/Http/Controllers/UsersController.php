@@ -35,5 +35,9 @@ class UsersController
         ]);
 
         Auth::attempt($data);
+        $user = User::find(Auth::id());
+        $token = $user->createToken('cookie');
+
+        return ['token' => $token->plainTextToken];
     }
 }
