@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\UnauthorizedException;
 
 class UsersController
 {
@@ -34,7 +35,9 @@ class UsersController
             'password' => ['required', Password::min(8)]
         ]);
 
-        Auth::attempt($data);
+        if (!Auth::attempt($data)) {
+            throw new UnauthorizedException();
+        }
         $user = User::find(Auth::id());
         $token = $user->createToken('cookie');
 
