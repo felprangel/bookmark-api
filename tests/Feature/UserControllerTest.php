@@ -21,3 +21,15 @@ it('should create an user correctly', function () {
     ]);
     $response->assertStatus(Response::HTTP_OK);
 });
+
+it('should make login correctly', function () {
+    $data = [
+        'email' => 'test@email.com',
+        'password' => 'testPassword'
+    ];
+
+    Auth::shouldReceive('attempt')->with($data);
+    $response = $this->post('/login', $data);
+
+    $response->assertStatus(Response::HTTP_OK);
+});
