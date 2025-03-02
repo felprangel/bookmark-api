@@ -29,7 +29,7 @@ it('should make login correctly', function () {
         'password' => 'testPassword'
     ];
 
-    Auth::shouldReceive('attempt')->with($data);
+    Auth::partialMock()->shouldReceive('attempt')->with($data);
     $response = $this->post('/login', $data);
 
     $response->assertOk();
