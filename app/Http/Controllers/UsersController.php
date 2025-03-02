@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -18,6 +19,7 @@ class UsersController
             'password' => ['required', 'confirmed', Password::min(8)]
         ]);
 
+        $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
         Auth::login($user);
     }
