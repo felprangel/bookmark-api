@@ -32,5 +32,6 @@ it('should make login correctly', function () {
     Auth::partialMock()->shouldReceive('attempt')->with($data);
     $response = $this->post('/login', $data);
 
+    $response->assertExactJsonStructure(['token']);
     $response->assertOk();
 });
