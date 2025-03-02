@@ -31,7 +31,7 @@ class UsersController
     public function login()
     {
         $data = Request::validate([
-            'email' => ['required', 'email', Rule::unique('users')],
+            'email' => ['required', 'email'],
             'password' => ['required', Password::min(8)]
         ]);
 
