@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
@@ -47,4 +48,18 @@ it('should throw an error if try to make login with invalid credentials', functi
     $response = $this->post('/login', $data);
 
     $response->assertUnauthorized();
+});
+
+it('should logout the user correctly', function () {
+    // TODO: Trocar seeder por factory de usuário
+    // TODO: Usar o método do actingAs do Sanctum para testes
+    $this->seed(UserSeeder::class);
+    $user = User::find(1);
+    $token = $user->createToken('test')->plainTextToken;
+
+    $response = $this->withHeaders([
+        'Authorization' => "Bearer $token"
+    ])->post('/logout');
+
+    $response->assertOk();
 });
