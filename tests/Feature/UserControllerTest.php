@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +25,7 @@ it('should create an user correctly', function () {
 });
 
 it('should make login correctly', function () {
+    $this->seed(UserSeeder::class);
     $data = [
         'email' => 'test@email.com',
         'password' => 'testPassword'
