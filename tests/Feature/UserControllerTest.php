@@ -31,5 +31,5 @@ it('should make login correctly', function () {
     Auth::shouldReceive('attempt')->with($data);
     $response = $this->post('/login', $data);
 
-    $response->assertStatus(Response::HTTP_OK);
+    $response->assertOk();
 });
