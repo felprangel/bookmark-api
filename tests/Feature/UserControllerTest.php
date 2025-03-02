@@ -36,3 +36,15 @@ it('should make login correctly', function () {
     $response->assertExactJsonStructure(['token']);
     $response->assertOk();
 });
+
+it('should throw an error if try to make login with invalid credentials', function () {
+    $this->seed(UserSeeder::class);
+    $data = [
+        'email' => 'test@email.com',
+        'password' => 'wrongPassword'
+    ];
+
+    $response = $this->post('/login', $data);
+
+    $response->assertUnauthorized();
+});
