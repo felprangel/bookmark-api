@@ -21,7 +21,10 @@ class UsersController
 
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
+        $token = $user->createToken('cookie');
         Auth::login($user);
+
+        return ['token' => $token->plainTextToken];
     }
 
     public function login()
