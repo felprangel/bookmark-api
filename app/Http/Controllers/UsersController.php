@@ -26,6 +26,11 @@ class UsersController
 
     public function login()
     {
-        return 'hello world';
+        $data = Request::validate([
+            'email' => ['required', 'email', Rule::unique('users')],
+            'password' => ['required', Password::min(8)]
+        ]);
+
+        Auth::attempt($data);
     }
 }
