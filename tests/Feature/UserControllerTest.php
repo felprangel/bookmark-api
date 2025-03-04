@@ -26,7 +26,7 @@ it('should create an user correctly', function () {
 });
 
 it('should make login correctly', function () {
-    $this->seed(UserSeeder::class);
+    User::factory()->create();
     $data = [
         'email' => 'test@email.com',
         'password' => 'testPassword'
@@ -39,7 +39,7 @@ it('should make login correctly', function () {
 });
 
 it('should throw an error if try to make login with invalid credentials', function () {
-    $this->seed(UserSeeder::class);
+    User::factory()->create();
     $data = [
         'email' => 'test@email.com',
         'password' => 'wrongPassword'
