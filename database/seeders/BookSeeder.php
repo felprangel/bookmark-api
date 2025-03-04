@@ -14,12 +14,14 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('books')->insert([
-            'user_id' => 1,
-            'title' => Str::random(20),
-            'author' => Str::random(20),
-            'pages' => random_int(0, 500),
-            'read' => random_int(0, 1)
-        ]);
+        for ($index = 0; $index < 10; $index++) {
+            DB::table('books')->insert([
+                'user_id' => 1,
+                'title' => Str::random(20),
+                'author' => Str::random(20),
+                'pages' => random_int(0, 500),
+                'read' => random_int(0, 1)
+            ]);
+        }
     }
 }
