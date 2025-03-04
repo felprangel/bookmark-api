@@ -1,11 +1,8 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\Sanctum;
-
-uses(RefreshDatabase::class);
 
 it('should create an user correctly', function () {
     $data = [
