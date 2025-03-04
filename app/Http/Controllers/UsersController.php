@@ -43,4 +43,9 @@ class UsersController
 
         return ['token' => $token->plainTextToken];
     }
+
+    public function logout()
+    {
+        Auth::user()->currentAccessToken()->delete();
+    }
 }
