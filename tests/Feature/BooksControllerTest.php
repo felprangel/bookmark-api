@@ -14,3 +14,21 @@ it('should return all books of the logger user', function () {
 
     $response->assertOk();
 });
+
+it('should register an book correctly', function () {
+    Sanctum::actingAs(
+        User::factory()->create()
+    );
+
+    $data = [
+        'title' => 'Clean Code',
+        'author' => 'Robert C. Martin',
+        'pages' => 431,
+        'read' => false
+    ];
+
+    $response = $this->post('/book', $data);
+    $response->assertOk();
+
+    expect(User::where('title', 'Clean Code')->exists())->toBeTrue();
+});
