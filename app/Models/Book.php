@@ -3,8 +3,33 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Book extends Model
 {
-    //
+    public static function getBooksByUser(int $page)
+    {
+        $limit = $page * 10;
+        $offset = ($page - 1) * 10;
+
+        $books = DB::select(
+            "SELECT
+                books.title,
+                books.author,
+                books.pages,
+                books.read
+            FROM books
+            WHERE books.user_id = :user_id
+            LIMIT :limit
+            OFFSET :offset",
+            [
+                'user_id' => Auth::id(),
+                'limit' => $limit,
+                'offset' => $offset
+            ]
+        );
+
+        return $books;
+    }
 }
