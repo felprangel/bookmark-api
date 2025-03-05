@@ -14,7 +14,7 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($index = 0; $index < 10; $index++) {
+        for ($index = 0; $index < 15; $index++) {
             DB::table('books')->insert([
                 'user_id' => 1,
                 'title' => Str::random(20),
