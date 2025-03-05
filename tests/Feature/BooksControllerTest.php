@@ -10,7 +10,7 @@ it('should return all books of the logger user', function () {
     );
     $this->seed(BookSeeder::class);
 
-    $response = $this->get('/books');
+    $response = $this->get('/books?page=1');
 
     $response->assertOk();
     $response->assertJson();
