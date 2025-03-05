@@ -14,6 +14,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'id' => 1,
             'name' => Str::random(10),
             'email' => 'test@email.com',
             'password' => Hash::make('testPassword')
