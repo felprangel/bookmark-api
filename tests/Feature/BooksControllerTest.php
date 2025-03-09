@@ -16,6 +16,17 @@ it('should return all books of the logger user', function () {
     $response->assertOk();
 });
 
+it('should return all books of the logger user withou page attribute', function () {
+    Sanctum::actingAs(
+        User::factory()->create()
+    );
+    $this->seed(BookSeeder::class);
+
+    $response = $this->get('/books');
+
+    $response->assertOk();
+});
+
 it('should register an book correctly', function () {
     Sanctum::actingAs(
         User::factory()->create()
