@@ -36,7 +36,7 @@ class UsersController
         ]);
 
         if (!Auth::attempt($data)) {
-            throw new UnauthorizedHttpException('');
+            throw new UnauthorizedHttpException('', 'Email ou senha incorretos');
         }
         $user = User::find(Auth::id());
         $token = $user->createToken('cookie');
