@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Book extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['user_id', 'title', 'author', 'pages', 'read'];
 
     public static function getBooksByUser(int $page)
