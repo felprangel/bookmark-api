@@ -46,3 +46,16 @@ it('should mark an book as read correctly', function () {
 
     expect(Book::where('id', $book->id)->first()->read)->toBeTrue();
 });
+
+it('should mark an book as unread correctly', function () {
+    Sanctum::actingAs(
+        User::factory()->create()
+    );
+
+    $book = Book::factory()->create();
+
+    $response = $this->patch("/book/{$book->id}/read", ['read' => false]);
+    $response->assertOk();
+
+    expect(Book::where('id', $book->id)->first()->read)->toBe(false);
+});
