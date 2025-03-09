@@ -29,6 +29,6 @@ class BooksController
 
         $book = new Book($data);
         $book->user_id = Auth::id();
-        $book->save;
+        $book->save();
     }
 }
