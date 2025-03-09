@@ -13,6 +13,13 @@ class Book extends Model
 
     protected $fillable = ['user_id', 'title', 'author', 'pages', 'read'];
 
+    protected function casts(): array
+    {
+        return [
+            'read' => 'boolean',
+        ];
+    }
+
     public static function getBooksByUser(int $page)
     {
         $limit = $page * 10;
