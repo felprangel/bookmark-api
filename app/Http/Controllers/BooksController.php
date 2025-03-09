@@ -31,4 +31,17 @@ class BooksController
         $book->user_id = Auth::id();
         $book->save();
     }
+
+    public function readBook(int $bookId)
+    {
+        $data = Request::validate([
+            'read' => ['required', 'boolean']
+        ]);
+
+        $book = new Book();
+        $book->exists = true;
+        $book->id = $bookId;
+        $book->read = $data['read'];
+        $book->save();
+    }
 }
