@@ -33,3 +33,16 @@ it('should register an book correctly', function () {
 
     expect(Book::where('title', 'Clean Code')->exists())->toBeTrue();
 });
+
+it('should mark an book as read correctly', function () {
+    Sanctum::actingAs(
+        User::factory()->create()
+    );
+
+    Book::factory()->unread()->create();
+
+    $response = $this->patch('/book/1/read', ['read' => true]);
+    $response->assertOk();
+
+    expect(Book::where('id', 1)->read)->toBeTrue();
+});
