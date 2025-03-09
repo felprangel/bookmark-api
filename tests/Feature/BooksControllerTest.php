@@ -44,5 +44,5 @@ it('should mark an book as read correctly', function () {
     $response = $this->patch("/book/{$book->id}/read", ['read' => true]);
     $response->assertOk();
 
-    expect($book->read)->toBeTrue();
+    expect(Book::where('id', $book->id)->first()->read)->toBeTrue();
 });
