@@ -1,4 +1,3 @@
-// TODO: Analisar o que é necessário aqui
 * text=auto eol=lf
 
 *.blade.php diff=html
