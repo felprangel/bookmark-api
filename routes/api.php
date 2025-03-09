@@ -13,5 +13,5 @@ Route::middleware(Authenticate::class . ':sanctum')->group(function () {
 
     Route::get('/books', [BooksController::class, 'getUserBooks']);
     Route::post('/book', [BooksController::class, 'registerBook']);
-    Route::patch('/book/read', [BooksController::class, 'readBook']);
+    Route::patch('/book/{id}/read', [BooksController::class, 'readBook']);
 });
