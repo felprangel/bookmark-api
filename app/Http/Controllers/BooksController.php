@@ -11,10 +11,10 @@ class BooksController
     public function getUserBooks()
     {
         $data = Request::validate([
-            'page' => ['required', 'integer']
+            'page' => ['integer']
         ]);
 
-        $books = Book::getBooksByUser($data['page']);
+        $books = Book::getBooksByUser($data['page'] ?? 1);
         return $books;
     }
 
