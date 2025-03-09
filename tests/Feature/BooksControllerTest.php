@@ -39,10 +39,10 @@ it('should mark an book as read correctly', function () {
         User::factory()->create()
     );
 
-    Book::factory()->unread()->create();
+    $book = Book::factory()->unread()->create();
 
-    $response = $this->patch('/book/1/read', ['read' => true]);
+    $response = $this->patch("/book/{$book->id}/read", ['read' => true]);
     $response->assertOk();
 
-    expect(Book::where('id', 1)->read)->toBeTrue();
+    expect($book->read)->toBeTrue();
 });
