@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Book;
 use App\Models\User;
 use Database\Seeders\BookSeeder;
 use Laravel\Sanctum\Sanctum;
@@ -30,5 +31,5 @@ it('should register an book correctly', function () {
     $response = $this->post('/book', $data);
     $response->assertOk();
 
-    expect(User::where('title', 'Clean Code')->exists())->toBeTrue();
+    expect(Book::where('title', 'Clean Code')->exists())->toBeTrue();
 });
