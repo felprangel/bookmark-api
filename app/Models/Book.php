@@ -27,6 +27,7 @@ class Book extends Model
 
         $books = DB::select(
             "SELECT
+                books.id,
                 books.title,
                 books.author,
                 books.pages,
