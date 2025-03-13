@@ -39,7 +39,7 @@ it('should register an book correctly', function () {
         'read' => false
     ];
 
-    $response = $this->post('/book', $data);
+    $response = $this->post('/books', $data);
     $response->assertOk();
 
     expect(Book::where('title', 'Clean Code')->exists())->toBeTrue();
@@ -52,7 +52,7 @@ it('should mark an book as read correctly', function () {
 
     $book = Book::factory()->unread()->create();
 
-    $response = $this->patch("/book/{$book->id}/read", ['read' => true]);
+    $response = $this->patch("/books/{$book->id}/read", ['read' => true]);
     $response->assertOk();
 
     expect(Book::where('id', $book->id)->first()->read)->toBeTrue();
@@ -65,7 +65,7 @@ it('should mark an book as unread correctly', function () {
 
     $book = Book::factory()->create();
 
-    $response = $this->patch("/book/{$book->id}/read", ['read' => false]);
+    $response = $this->patch("/books/{$book->id}/read", ['read' => false]);
     $response->assertOk();
 
     expect(Book::where('id', $book->id)->first()->read)->toBe(false);

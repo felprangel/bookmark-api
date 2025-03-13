@@ -11,7 +11,7 @@ Route::post('/login', [UsersController::class, 'login']);
 Route::middleware(Authenticate::class . ':sanctum')->group(function () {
     Route::post('/logout', [UsersController::class, 'logout']);
 
-    Route::get('/book', [BooksController::class, 'getUserBooks']);
-    Route::post('/book', [BooksController::class, 'registerBook']);
-    Route::patch('/book/{id}/read', [BooksController::class, 'readBook']);
+    Route::get('/books', [BooksController::class, 'getUserBooks']);
+    Route::post('/books', [BooksController::class, 'registerBook']);
+    Route::patch('/books/{id}/read', [BooksController::class, 'readBook']);
 });
