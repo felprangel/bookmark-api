@@ -14,4 +14,5 @@ Route::middleware(Authenticate::class . ':sanctum')->group(function () {
     Route::get('/books', [BooksController::class, 'getUserBooks']);
     Route::post('/books', [BooksController::class, 'registerBook']);
     Route::patch('/books/{id}/read', [BooksController::class, 'readBook']);
+    Route::delete('/books/{id}', [BooksController::class, 'deleteBook']);
 });

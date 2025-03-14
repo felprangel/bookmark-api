@@ -44,4 +44,10 @@ class BooksController
         $book->read = $data['read'];
         $book->save();
     }
+
+    public function deleteBook(int $bookId)
+    {
+        $book = Book::find($bookId);
+        $book->delete();
+    }
 }
