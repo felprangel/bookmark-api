@@ -68,7 +68,7 @@ it('should mark an book as unread correctly', function () {
     $response = $this->patch("/books/{$book->id}/read", ['read' => false]);
     $response->assertOk();
 
-    expect(Book::where('id', $book->id)->first()->read)->toBe(false);
+    expect(Book::find($book->id)->read)->toBe(false);
 });
 
 it('should remove an book correctly', function () {
