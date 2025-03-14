@@ -38,9 +38,7 @@ class BooksController
             'read' => ['required', 'boolean']
         ]);
 
-        $book = new Book();
-        $book->exists = true;
-        $book->id = $bookId;
+        $book = Book::find($bookId);
         $book->read = $data['read'];
         $book->save();
     }
