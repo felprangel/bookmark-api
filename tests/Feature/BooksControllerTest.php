@@ -70,3 +70,16 @@ it('should mark an book as unread correctly', function () {
 
     expect(Book::where('id', $book->id)->first()->read)->toBe(false);
 });
+
+it('should remove an book correctly', function () {
+    Sanctum::actingAs(
+        User::factory()->create()
+    );
+
+    $book = Book::factory()->create();
+
+    $response = $this->delete("/books/{$book->id}");
+    $response->assertOk();
+
+    expect(Book::find($book->id))->toBe(null);
+});
